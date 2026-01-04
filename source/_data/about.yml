@@ -1,9 +1,9 @@
 - class_name: 关于页
   subtitle: 生活明朗，万物可爱✨
-  avatarImg: http://ikun.therealman.top/img01/小虎.jpg
+  avatarImg: /img/小虎.jpg
   avatarSkills:
     left:
-      - 🤖️ 数码科技爱好者
+      - 🤖️ 数码
       - 🔍 分享与热心帮助
       - 🏠 智能家居小能手
       - 🔨 设计开发一条龙
@@ -45,8 +45,8 @@
   map:
     title: 我现在住在
     StrengthenTitle: 中国，重庆市
-    background: https://bu.dusays.com/2023/07/05/64a4c63495ac5.jpg
-    backgroundDark: http://ikun.therealman.top/img01/重庆2.jpg
+    background: /img/ca2.jpg
+    backgroundDark: /img/cqmap.png
   selfInfo:
     selfInfoTips1: 生于
     selfInfoContentYear: 2004
@@ -57,7 +57,7 @@
   personalities:
     author_name: 这咋说呢？？？
     personality_type: eee
-    photo_url: http://ikun.therealman.top/img01/宫门口.jpg
+    photo_url: /img/IKUN1.jpg
     personality_img: https://npm.elemecdn.com/anzhiyu-blog@2.0.8/img/svg/ESFJ-A.svg
     name_url: https://www.16personalities.com/ch/esfj-%E4%BA%BA%E6%A0%BC
   maxim:
@@ -72,7 +72,7 @@
     game_tips: 爱好游戏
     game_title: Counter-Strike
     game_uid: "用户玩家xxxxx"
-    game_bg: http://ikun.therealman.top/img01/csgo.jpg
+    game_bg: /img/csgo.jpg
   comic:
     comic_tips: 爱好番剧
     comic_title: 追番

@@ -6,11 +6,15 @@
 title: ikun
 subtitle: '这对吗孩子们'
 description: '这是ikun宝地'
-keywords:
+keywords: 123456
 author: 阿晖
 language: en
 timezone: ''
 email: therealikun@outlook.com
+top_img: /img/pix05.jpg
+top_single_background: /img/pix05.jpg
+background_img: /img/pix05.jpg
+index_img: "background: url( /img/pix03.jpg ) top / cover repeat fixed" 
 
 # 追番插件
 # https://github.com/HCLonely/hexo-bilibili-bangumi
@@ -41,7 +45,7 @@ bangumi: # 追番设置
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://vell.therealman.top/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -57,6 +61,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -130,6 +135,10 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://github.com/ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
+  repository: git@github.com:ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
   branch: main
-  message: "Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }}"
+# APlayer
+# https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md
+aplayer:
+  meting: true
+  asset_inject: false

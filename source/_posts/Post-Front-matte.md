@@ -3,8 +3,8 @@ title: Post Front-matte
 date: 2025-01-27 14:35:50
 main_color: "#c0e0e0"
 tags: 圣地
-top_img: http://ikun.therealman.top/img01/山.jpg
-cover: http://ikun.therealman.top/img01/山.jpg
+top_img: /img/观音桥.jpg
+cover: /img/观音桥.jpg
 description: 怎么说呢？
 
 
@@ -15,4 +15,4 @@ description: 怎么说呢？
   文档「开始」页面中的标题部分就是超大号文字。
   {% p center logo large, Volantis %}
   {% p center small, A Wonderful Theme for Hexo %}
-![](http://ikun.therealman.top/img01/重庆地图.png)
+![](/img/cqmap.png)

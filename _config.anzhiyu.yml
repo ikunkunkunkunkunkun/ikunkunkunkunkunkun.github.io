@@ -11,7 +11,7 @@ menu:
     留言板: /comments/ || anzhiyu-icon-envelope
 
   我的:
-    音乐馆: /music/ || anzhiyu-icon-music
+    #音乐馆: /music/?id=2842214528&server=tencent || anzhiyu-icon-music
     追番页: /bangumis/ || anzhiyu-icon-bilibili
     相册集: /album/ || anzhiyu-icon-images
     小空调: /air-conditioner/ || anzhiyu-icon-fan
@@ -140,21 +140,21 @@ katex:
 # --------------------------------------
 
 # Favicon（网站图标）
-favicon: /favicon.ico
+favicon: /img/科比.svg
 
 # Avatar (头像)
 avatar:
-  img: http://ikun.therealman.top/img01/IKUN1.jpg
+  img: /img/小虎.jpg
   effect: false
 
 # Disable all banner image
 disable_top_img: false
 
 # The banner image of home page
-index_img: false # "background: url() top / cover no-repeat"
-
+index_img: "background: url('/img/pix03.jpg') top / cover no-repeat"
 # If the banner of page not setting, it will show the top_img
-default_top_img: https://ooo.0x0.ooo/2025/02/05/OGERRL.jpg
+default_top_img:  false
+#https://ooo.0x0.ooo/2025/02/05/OGERRL.jpg
 
 cover:
   # display the cover or not (是否显示文章封面)
@@ -165,9 +165,8 @@ cover:
   # left/right/both
   position: left
   # When cover is not set, the default cover is displayed (当没有设置cover时，默认的封面显示)
-  default_cover: 
-    - http://ikun.therealman.top/img01/宫门口.jpg
-  
+  default_cover:
+    - /img/宫门口.jpg
 
 # Replace Broken Images (替换无法显示的图片)
 error_img:
@@ -186,14 +185,14 @@ post_meta:
     date_format: simple # date/relative/simple 显示日期还是相对日期 或者 简单日期
     categories: true # true or false 主页是否显示分类
     tags: true # true or false 主页是否显示标籤
-    label: false # true or false 显示描述性文字
+    label: true # true or false 显示描述性文字
   post:
     date_type: both # created or updated or both 文章页日期是创建日或者更新日或都显示
     date_format: date # date/relative 显示日期还是相对日期
     categories: true # true or false 文章页是否显示分类
     tags: true # true or false 文章页是否显示标籤
     label: true # true or false 显示描述性文字
-    unread: false # true or false 文章未读功能
+    unread: true # true or false 文章未读功能
 
 # 主色调相关配置
 mainTone:
@@ -268,7 +267,7 @@ post_edit: # 目前仅可选择一个平台在线编辑
 
   # yuque: https://www.yuque.com/user-name/repo-name/
   # 示例: https://www.yuque.com/yuque/yuque/
-  # 你需要在语雀文章 Front Matter 添加参数 id 并确保其唯一性（例如 “id: yuque”, “id: 01”）
+  # 你需要在语雀文章 Front Matter 添加参数 id 并确保其唯一性（例如 "id: yuque", "id: 01"）
   yuque: false
 
 # Related Articles
@@ -339,7 +338,7 @@ valine:
   guest_info: nick,mail,link # valine comment header info (nick/mail/link)
   recordIP: false # Record reviewer IP
   serverURLs: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  bg: /img/comment_bg.png # valine background
+  bg: /img/宫门口.jpg # valine background
   emojiCDN: //i0.hdslb.com/bfs/emote/ # emoji CDN
   enableQQ: true # enable the Nickname box to automatically get QQ Nickname and QQ Avatar
   requiredFields: nick,mail # required fields (nick/mail)
@@ -437,9 +436,9 @@ footer:
   runtime:
     enable: true
     launch_time: 01/20/2025 00:00:00 # 网站上线时间
-    work_img: https://img02.therealman.top/2025/01/4fe5cb19ef7bf03bddcb929f19ada3e3.svg
+    work_img: /img/蔡徐坤-copy.svg
     work_description: 真是难改呀！！
-    offduty_img:  http://ikun.therealman.top/img01/Group 1.svg
+    offduty_img:  /img/Group 1.svg
     offduty_description: 这么晚了就改撤了。。。
   # 徽标部分配置项 https://shields.io/
   # https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr
@@ -530,7 +529,7 @@ footer:
     enable: true
     authorLink: /
     cc:
-      enable: false
+      enable: true
       link: /copyright
     linkList:
       - link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
@@ -540,7 +539,7 @@ footer:
       # - link: https://beian.miit.gov.cn/
       #   text: 湘ICP备-xxxxxxx号
     subTitle:
-      enable: false
+      enable: true
       # Typewriter Effect (打字效果)
       effect: true
       # Effect Speed Options (打字效果速度参数)
@@ -550,15 +549,15 @@ footer:
       # loop (循环打字)
       loop: true
       # source 调用第三方服务
-      # source: false 关闭调用
-      # source: 1  调用一言网的一句话（简体） https://hitokoto.cn/
+        
+      #source: 1 
       # source: 2  调用一句网（简体） http://yijuzhan.com/
       # source: 3  调用今日诗词（简体） https://www.jinrishici.com/
       # subtitle 会先显示 source , 再显示 sub 的内容
-      source: 1
+      source: 2
       # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
       sub:
-        # - 生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期.
+         #- 生活明朗&#44; 万物可爱&#44; 人间值得&#44; 未来可期.
 
 # Analysis
 # --------------------------------------
@@ -667,7 +666,7 @@ article_double_row: true
 # The position of site info, eg: 300px/300em/300rem/10% (主页标题距离顶部距离)
 index_site_info_top:
 # The height of top_img, eg: 300px/300em/300rem (主页top_img高度)
-index_top_img_height:
+index_top_img_height: 
 
 # The user interface setting of category and tag page (category和tag页的UI设置)
 # index - same as Homepage UI (index 值代表 UI将与首页的UI一样)
@@ -730,11 +729,11 @@ click_heart:
 
 # Mouse click effects: words (鼠标点击效果: 文字)
 ClickShowText:
-  enable: false
+  enable: true
   text:
-    # - I
-    # - LOVE
-    # - YOU
+     - 不
+     - 是
+     - 哥们
   fontSize: 15px
   random: false
   mobile: false
@@ -771,8 +770,8 @@ hr_icon:
   icon-top:
 
 # the subtitle on homepage (主页subtitle)
-subtitle:
-  enable: false
+subTitle:
+  enable: true
   # Typewriter Effect (打字效果)
   effect: true
   # Effect Speed Options (打字效果速度参数)
@@ -782,27 +781,22 @@ subtitle:
   # loop (循环打字)
   loop: true
   # source 调用第三方服务
-  # source: false 关闭调用
-  # source: 1  调用一言网的一句话（简体） https://hitokoto.cn/
-  # source: 2  调用一句网（简体） http://yijuzhan.com/
-  # source: 3  调用今日诗词（简体） https://www.jinrishici.com/
-  # subtitle 会先显示 source , 再显示 sub 的内容
-  source: 1
+  source: 2  # 使用一句网接口
   # 如果关闭打字效果，subtitle 只会显示 sub 的第一行文字
   sub:
-    # - 生活明朗&#44;万物可爱&#44;人间值得&#44;未来可期.
+    - 生活明朗，万物可爱，人间值得，未来可期  # 这是备用显示的句子
 
 # Loading Animation (加载动画)
 preloader:
-  enable: true
+  enable: false
   # source
   # 1. fullpage-loading
   # 2. pace (progress bar)
   # else all
-  source: 3
+  source: 1
   # pace theme (see https://codebyzach.github.io/pace/)
   pace_css_url:
-  avatar: http://ikun.therealman.top/img01/IKUN1.jpg # 自定加载动画义头像
+  avatar: /img/小虎.jpg # 自定加载动画义头像
 
 # aside (侧边栏)
 # --------------------------------------
@@ -820,14 +814,15 @@ aside:
   card_author:
     enable: true
     description: <div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div> # 默认为站点描述
+    link: /about
     name_link: /about
   card_announcement:
-    enable: false
+    enable: true
     content: 欢迎来看我的博客鸭~
   card_weixin:
     enable: true
-    face: http://ikun.therealman.top/img01/坤头.png
-    backFace: http://ikun.therealman.top/img01/R-C.jpg
+    face: /img/qwenpic2.png
+    backFace: /img/qwenpic.png
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
@@ -1058,10 +1053,10 @@ css_prefix: true
 
 # 首页顶部相关配置
 home_top:
-  enable: true # 开关
-  timemode: date #date/updated
+  enable: true
+  timemode: date
   title: ikun基地
-  subTitle: 时间到了。
+  subTitle: 时间到喽！！  # 这是固定显示的副标题
   siteText: anheyu.com
   category:
     - name: 前端
@@ -1087,16 +1082,16 @@ home_top:
   banner:
     tips: 进来看看
     title: ikun的故事
-    image: http://ikun.therealman.top/img01/红围巾ikun.jpg
+    image: /img/红围巾ikun.jpg
     link: https://docs.anheyu.com/
 
 # 朋友圈配置
 friends_vue:
-  enable: false
+  enable: enable
   vue_js: https://npm.elemecdn.com/anzhiyu-theme-static@1.1.1/friends/index.4f887d95.js
   apiurl: # 朋友圈后端地址
   top_tips: 使用 友链朋友圈 订阅友链最新文章
-  top_background:
+  top_background: /img/山山.jpg
 
 # 深色模式粒子效果canvas
 universe:
@@ -1235,7 +1230,7 @@ rightClickMenu:
 # 首页随便逛逛people模式 而非技能点模式，关闭后为技能点模式需要配置creativity.yml
 peoplecanvas:
   enable: false 
-  img: http://ikun.therealman.top/img01/红围巾ikun.jpg
+  img: /img/红围巾ikun.jpg
 # 动效
 dynamicEffect:
   postTopWave: true # 文章顶部波浪效果
@@ -1247,6 +1242,7 @@ dynamicEffect:
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
+      
     # 自定义css
     # - <link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'">
   bottom:
@@ -1323,7 +1319,8 @@ CDN:
     # aplayer_css:
     # aplayer_js:
     # meting_js:
-    # meting_api:
+      meting_js: https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js
+    # meting_api: https://meting.qjqq.cn/?server=:server&type=:type&id=:id&auth=:auth&r=:r
     # prismjs_js:
     # prismjs_lineNumber_js:
     # prismjs_autoloader:

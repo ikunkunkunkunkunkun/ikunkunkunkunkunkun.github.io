@@ -78,14 +78,14 @@ author_status:
   # 可以是任何图片，建议放表情包或者emoji图片，效果都很好，[表情包速查](https://emotion.xiaokang.me/)
   statusImg: "https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png"
   skills:
-    - 🤖️ 数码科技爱好者
-    - 🔍 分享与热心帮助
-    - 🏠 智能家居小能手
-    - 🔨 设计开发一条龙
-    - 🤝 专修交互与设计
-    - 🏃 脚踏实地行动派
-    - 🧱 团队小组发动机
-    - 💢 壮汉人狠话不多
+    - 📸 数码影像发烧友
+    - 🛠️ 设备维修小达人
+    - 📡 网络搭建工程师
+    - 🎮 电竞外设测评官
+    - 🔧 硬件改装实操派
+    - 📱 数码新品尝鲜客
+    - 💻 高效办公工具控
+    - 🎧 音频设备鉴赏家
 
 # search (搜索)
 # see https://blog.anheyu.com/posts/c27d.html#搜索系统
@@ -238,7 +238,7 @@ post_copyright:
   enable: true
   decode: false
   author_href:
-  location: 长沙
+  location: cq
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
   avatarSinks: false # hover时头像下沉
@@ -405,8 +405,8 @@ chat_hide_show: true
 # chatra
 # https://chatra.io/
 chatra:
-  enable: false
-  id:
+  enable: true
+  id: biBDjdAAMksEkYQZy
 
 # tidio
 # https://www.tidio.com/

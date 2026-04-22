@@ -158,7 +158,7 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://ikunkunkunkunkunkun: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@github.com/ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
+  repository:  https://github.com/ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git ## https://ikunkunkunkunkunkun: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@github.com/ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
   branch: main
   cname: therealman.top 
 # APlayer

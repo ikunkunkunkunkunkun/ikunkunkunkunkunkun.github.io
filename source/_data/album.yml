@@ -1,9 +1,9 @@
 - class_name: 世界各地夕阳与风景
   path_name: /wordScenery
   type: 2
-  description: 因为到不了世界各地，所以请网友们发来了各地的夕阳与风景🌇。
-  cover: /img/pix05.jpg
-  top_background: /img/pix05.jpg
+  description: 隔着屏幕签收的日落，是我和远方最近的一次拥抱🌅
+  cover: https://bu.dusays.com/2026/01/10/6961fecf6ada3.jpg
+  top_background: https://bu.dusays.com/2026/01/10/6961feccf07f0.jpg
   rowHeight: 220
   limit: 10
   lazyload: true
@@ -12,27 +12,30 @@
   top_link: /album
   top_btn_text: 返回
   album_list:
-    - date: 2022/10/26 01:00:00
-      content: 湘潭的一角。
-      address: 湖南湘潭
-      from: 再吃一口就减肥
+    - date: 2024/10/26 01:00:00
+      content: 沈阳故宫。
+      address: 辽宁沈阳
+      from: 故宫对面
       image:
-        - /img/mount-fuji01.jpg
-    - date: 2022-10-25
-      content: 洛阳暴雨后的天空。
-      address: 河南洛阳
-      from: 紫菜卷
+        - https://bu.dusays.com/2026/01/12/6964777190c0d.png
+        - https://bu.dusays.com/2026/04/02/69ce12df3fde3.jpg
+        - https://bu.dusays.com/2026/04/02/69ce13951fe5d.jpg
+    - date: 2023-10-25
+      content: 长白山的故事
+      address: 吉林延吉
+      from: 
       image:
-        - /img/pix01.jpg
-        - /img/pix03.jpg
+        - https://bu.dusays.com/2026/04/02/69ce190de4ebd.jpg
+        - https://bu.dusays.com/2026/04/02/69ce190de4990.jpg
+        
 
 - class_name: 我的日常
   path_name: /dailyPhoto
   type: 1
-  description: 这里存放的是有关我自己的一些沙雕生活与有趣的事情。
+  description: 这里存放的是有关我自己的一些生活与有趣的事情。
   top_link: /album
   top_btn_text: 返回
-  top_background: https://bu.dusays.com/2023/04/09/64329399cea5a.webp
+  top_background: https://bu.dusays.com/2026/01/10/6961fecedadbb.jpg
   cover: https://bu.dusays.com/2023/04/09/64329399cea5a.webp
   album_list:
     - date: 2022-10-24

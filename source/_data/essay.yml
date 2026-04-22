@@ -1,0 +1,21 @@
+- title: 即刻短文
+  subTitle: 随便看看吧。
+  tips: 随时随地，分享生活
+  buttonText: 关于我
+  buttonLink: /about/
+  limit: 30
+  home_essay: true
+  top_background: https://bu.dusays.com/2026/01/15/6968817e87fdb.gif
+  essay_list:
+  - content: "这是第一条说说内容.测试一下"
+    date: "2025-02-4"
+    link: https://aethera.cn/
+  - content: "这是第二条说说内容"
+    date: "2025-02-18"
+    from: "某个地方"
+  - content: "试试这个缩略图功能"
+    date: "2025-07-28"
+    image: 
+    - https://bu.dusays.com/2026/01/15/69688451ed2e4.gif
+ 
+    

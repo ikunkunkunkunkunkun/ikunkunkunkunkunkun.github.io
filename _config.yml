@@ -11,30 +11,31 @@ author: 阿晖
 language: en
 timezone: ''
 email: therealikun@outlook.com
-top_img: /img/pix05.jpg
-top_single_background: /img/pix05.jpg
-background_img: /img/pix05.jpg
+top_img: https://bu.dusays.com/2026/01/10/6961feceb0ef2.jpg
+top_single_background: https://bu.dusays.com/2026/01/10/6961feceb0ef2.jpg
+background_img: https://bu.dusays.com/2026/01/10/6961feceb0ef2.jpg
 index_img: "background: url( /img/pix03.jpg ) top / cover repeat fixed" 
 
 # 追番插件
 # https://github.com/HCLonely/hexo-bilibili-bangumi
 bangumi: # 追番设置
-  enable: true
+  enable: false
   source: bili
-  path:
+  path: bangumis/index.html 
   vmid: 341148845
   title: "追番列表"
   quote: "当然得看点了！"
   show: 1
   lazyload: true
-  loading:
+  loading: 
   showMyComment: false
   pagination: false
   metaColor:
   color:
-  webp:
+  webp: true
   progress:
   extraOrder:
+  coverMirror: "https://images.weserv.nl/?url="
   proxy:
     host: "代理host"
     port: "代理端口"
@@ -42,10 +43,32 @@ bangumi: # 追番设置
     top_img: false
     lazyload:
       enable: false
-
+      
+#envelope_comment
+#seehttps://akilar.top/posts/e2d3c450/
+envelope_comment:
+  enable: true #控制开关
+  custom_pic:
+    cover: https://bu.dusays.com/2026/01/10/6961fed146507.jpg #信笺头部图片
+    line: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/line.png #信笺底部图片
+    beforeimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/before.png # 信封前半部分
+    afterimg: https://npm.elemecdn.com/hexo-butterfly-envelope/lib/after.png # 信封后半部分
+  message: #信笺正文，多行文本，写法如下
+    - 有什么想问的？
+    - 有什么想说的？
+    - 有什么想吐槽的？
+    - 哪怕是有什么想吃的，都可以告诉我哦~
+  bottom: 自动书记人偶竭诚为您服务！ #仅支持单行文本
+  height: #1024px，信封划出的高度
+  path: #【可选】comments 的路径名称。默认为 comments，生成的页面为 comments/index.html
+  front_matter: #【可选】comments页面的 front_matter 配置
+    title: 留言板
+    comments: true
+    top_img: false
+    type: envelope
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://ikunkunkunkunkun-github-io.vercel.app
+url: http://ikuns.oss-cn-hangzhou.aliyuncs.com  ## https://ikunkunkunkunkun-github-io.vercel.app
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -126,7 +149,7 @@ include:
 exclude:
 ignore:
 
-# Extensions
+# Extensions       
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: anzhiyu
@@ -135,8 +158,9 @@ theme: anzhiyu
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: git@github.com:ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
+  repository: https://ikunkunkunkunkunkun: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@github.com/ikunkunkunkunkunkun/ikunkunkunkunkunkun.github.io.git
   branch: main
+  cname: therealman.top 
 # APlayer
 # https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md
 aplayer:

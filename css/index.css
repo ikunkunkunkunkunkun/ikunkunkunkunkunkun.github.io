@@ -11651,6 +11651,48 @@ h1.page-title + .tag-cloud-list {
   animation-timeline: view();
   background-color: var(--anzhiyu-bar-background);
 }
+#page-header.post-bg.hero-clean #post-top-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  transform: none;
+  filter: none;
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  pointer-events: none;
+  z-index: 0;
+}
+#page-header.post-bg.hero-clean #post-top-cover::after {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: -webkit-linear-gradient(0deg, rgba(0,0,0,0.58), rgba(0,0,0,0.24) 52%, rgba(0,0,0,0.42));
+  background: -moz-linear-gradient(0deg, rgba(0,0,0,0.58), rgba(0,0,0,0.24) 52%, rgba(0,0,0,0.42));
+  background: -o-linear-gradient(0deg, rgba(0,0,0,0.58), rgba(0,0,0,0.24) 52%, rgba(0,0,0,0.42));
+  background: -ms-linear-gradient(0deg, rgba(0,0,0,0.58), rgba(0,0,0,0.24) 52%, rgba(0,0,0,0.42));
+  background: linear-gradient(90deg, rgba(0,0,0,0.58), rgba(0,0,0,0.24) 52%, rgba(0,0,0,0.42));
+}
+#page-header.post-bg.hero-clean #post-top-cover #post-top-bg {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  -ms-animation: none;
+  animation: none;
+}
+#page-header.post-bg.hero-clean #post-info {
+  z-index: 3;
+}
 #page-header.post-bg #nav {
   -webkit-transition: all 0.5s, border 0.3s;
   -moz-transition: all 0.5s, border 0.3s;
@@ -20896,6 +20938,245 @@ body[data-type="album"] #page .page-title {
   display: none;
 }
 
+/* 相册地图 */
+#album .album-map-panel {
+  margin: 2rem 0 0;
+  padding: 1.2rem;
+  border: var(--style-border-always);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(255, 245, 247, 0.86), rgba(246, 252, 248, 0.92) 46%, rgba(246, 249, 255, 0.9)),
+    var(--anzhiyu-card-bg);
+  box-shadow: var(--anzhiyu-shadow-border);
+  overflow: hidden;
+}
+
+#album .album-map-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+#album .album-map-title h2 {
+  margin: 0.15rem 0 0;
+  color: var(--anzhiyu-fontcolor);
+  font-size: 1.45rem;
+  line-height: 1.25;
+}
+
+#album .album-map-kicker,
+#album .album-map-count {
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.78rem;
+}
+
+#album .album-map-count {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--anzhiyu-card-bg);
+  box-shadow: var(--anzhiyu-shadow-border);
+  white-space: nowrap;
+}
+
+#album .album-map-count span:first-child {
+  color: #ef8da7;
+  font-weight: 700;
+}
+
+#album .album-map-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+#album .album-map-board {
+  min-height: 540px;
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  position: relative;
+}
+
+#album .album-china-map {
+  width: 100%;
+  height: 500px;
+  min-height: 500px;
+}
+
+#album .album-map-south-sea {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 96px;
+  height: 76px;
+  border: 1px solid rgba(126, 146, 156, 0.42);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(238, 244, 241, 0.74), rgba(255, 255, 255, 0.66)),
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(126, 146, 156, 0.13) 8px 9px);
+  box-shadow: 0 10px 26px rgba(42, 52, 60, 0.08);
+  pointer-events: none;
+}
+
+#album .album-map-south-sea::before,
+#album .album-map-south-sea::after {
+  content: "";
+  position: absolute;
+  border: 1px dashed rgba(126, 146, 156, 0.62);
+  border-radius: 999px;
+}
+
+#album .album-map-south-sea::before {
+  right: 17px;
+  top: 15px;
+  width: 30px;
+  height: 38px;
+  transform: rotate(18deg);
+}
+
+#album .album-map-south-sea::after {
+  left: 18px;
+  bottom: 15px;
+  width: 22px;
+  height: 18px;
+  transform: rotate(-22deg);
+}
+
+#album .album-map-south-sea span {
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#album .album-map-legend {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.78rem;
+}
+
+#album .album-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#album .album-map-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(132, 145, 152, 0.35);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+#album .album-map-dot.is-visited {
+  border-color: rgba(239, 141, 167, 0.58);
+  background: #ffd6a8;
+}
+
+#album .album-map-latest {
+  display: flex;
+  flex-direction: column;
+  min-height: 430px;
+  padding: 0.8rem;
+  border: var(--style-border-always);
+  border-radius: 16px;
+  background: var(--anzhiyu-card-bg);
+  box-shadow: var(--anzhiyu-shadow-border);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+#album .album-map-latest:hover {
+  transform: translateY(-3px);
+  border: var(--style-border-hover);
+}
+
+#album .album-map-latest-label {
+  align-self: flex-start;
+  margin-bottom: 0.65rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(239, 141, 167, 0.13);
+  color: #d96d8d;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+#album .album-map-latest-cover {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+#album .album-map-latest-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-top: 0.8rem;
+}
+
+#album .album-map-latest-title {
+  margin: 0;
+  color: var(--anzhiyu-fontcolor);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+#album .album-map-latest-meta,
+#album .album-map-latest-address {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.78rem;
+}
+
+#album .album-map-latest-place {
+  color: #3a8f7a;
+  font-weight: 700;
+}
+
+#album .album-map-latest-address i {
+  color: #ef8da7;
+}
+
+#album .album-map-latest-from {
+  margin-top: auto;
+  color: var(--anzhiyu-secondtext);
+  font-size: 0.78rem;
+}
+
+[data-theme="dark"] #album .album-map-panel {
+  background:
+    linear-gradient(135deg, rgba(65, 47, 56, 0.78), rgba(36, 55, 51, 0.82) 48%, rgba(37, 45, 62, 0.86)),
+    var(--anzhiyu-card-bg);
+}
+
+[data-theme="dark"] #album .album-map-board {
+  background: rgba(20, 24, 30, 0.34);
+}
+
+[data-theme="dark"] #album .album-map-south-sea {
+  background:
+    linear-gradient(135deg, rgba(53, 61, 64, 0.72), rgba(31, 38, 46, 0.66)),
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(255, 255, 255, 0.09) 8px 9px);
+}
+
 /* 变量定义 */
 :root {
   --album-background-dark: #2d3548;
@@ -20985,12 +21266,50 @@ body[data-type="album"] #page .page-title {
 }
 
 @media (max-width: 960px) {
+  #album .album-map-body {
+    grid-template-columns: 1fr;
+  }
+  #album .album-map-latest {
+    min-height: 0;
+  }
+  #album .album-map-latest-cover {
+    max-height: 260px;
+  }
   #album .card-album .card {
     width: calc(100% / 2 - 40px);
   }
 }
 
 @media (max-width: 540px) {
+  #album .album-map-panel {
+    padding: 0.8rem;
+    border-radius: 14px;
+  }
+  #album .album-map-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  #album .album-map-board {
+    min-height: 340px;
+    padding: 0.65rem;
+  }
+  #album .album-china-map {
+    height: 350px;
+    min-height: 350px;
+  }
+  #album .album-map-south-sea {
+    width: 78px;
+    height: 60px;
+    right: 0.65rem;
+    bottom: 2.45rem;
+  }
+  #album .album-map-south-sea span {
+    font-size: 0.6rem;
+  }
+  #album .album-map-legend {
+    left: 0.65rem;
+    bottom: 0.65rem;
+  }
   #album .card-album .card {
     width: calc(100%);
   }

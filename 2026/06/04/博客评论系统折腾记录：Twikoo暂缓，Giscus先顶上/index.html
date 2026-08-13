@@ -1,0 +1,821 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上 | ikun</title><meta name="keywords" content="Giscus,Twikoo,博客,评论系统"><meta name="author" content="阿晖,therealikun@outlook.com"><meta name="copyright" content="阿晖"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上"><meta name="application-name" content="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上"><meta property="og:url" content="https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/index.html"><meta property="og:site_name" content="ikun"><meta property="og:description" content="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上最近给博客折腾评论系统，原本想一步到位上 Twikoo，让访客不用 GitHub 账号也能评论，体验更接近普通留言板。结果真上手才发现：技术链路倒是不难，真正卡我的居然是 备案和 HTTPS 😅 所以这篇就简单记录一下这次折腾过程：前半"><meta property="og:locale" content="en"><meta property="og:image" content="https://www.12700188.xyz/img/comment-system-giscus-cover.png"><meta property="article:author" content="阿晖"><meta property="article:tag" content="123456"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.12700188.xyz/img/comment-system-giscus-cover.png"><meta name="description" content="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上最近给博客折腾评论系统，原本想一步到位上 Twikoo，让访客不用 GitHub 账号也能评论，体验更接近普通留言板。结果真上手才发现：技术链路倒是不难，真正卡我的居然是 备案和 HTTPS 😅 所以这篇就简单记录一下这次折腾过程：前半"><link rel="shortcut icon" href="/img/%E7%A7%91%E6%AF%94.svg"><link rel="canonical" href="https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//hm.baidu.com"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/img/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="bookmark" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bef5ab5c0b3c7d10251abc0b08709734";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":true,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"sk-a3a58e0d1cde494399433d5d0243521a","Referer":"https://api.deepseek.com"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎回来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.12700188.xyz',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":1},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: {"mode":"both","api":"https://img2color-go.vercel.app/api?img=","cover_change":true},
+  authorStatus: {"skills":["📸 数码影像发烧友","🛠️ 设备维修小达人","📡 网络搭建工程师","🎮 电竞外设测评官","🔧 硬件改装实操派","📱 数码新品尝鲜客","💻 高效办公工具控","🎧 音频设备鉴赏家"]},
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"Author: 阿晖","link":"Link: ","source":"Source: ikun","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.","copySuccess":"Copy success, copy and reprint please mark the address of this article"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'ikun',
+  title: '博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上',
+  postAI: '',
+  pageFillDescription: '博客评论系统折腾记录：Twikoo 暂缓Giscus 先顶上, 一、Twikoo 为什么先放一放？🧩, 二、临时方案：先用 Giscus 顶上 💬, 三、Giscus 的准备工作 🧱, 1. 准备一个评论仓库, 2. 开启 GitHub Discussions, 3. 安装 Giscus App, 四、在 giscus.app 生成配置 ⚙️, 五、Hexo + Anzhiyu 里怎么配 🐟, 六、生成和验证 🧪, 七、现在的取舍 🤔, 八、备案后怎么切回 Twikoo？🔁, 小结 📝博客评论系统折腾记录暂缓先顶上最近给博客折腾评论系统原本想一步到位上让访客不用账号也能评论体验更接近普通留言板结果真上手才发现技术链路倒是不难真正卡我的居然是备案和所以这篇就简单记录一下这次折腾过程前半段快速说说为什么先搁置后半段重点写我最后临时启用的操作流程等备案处理好以后随时可以再切回一为什么先放一放本身是很适合博客评论的尤其是国内访客场景访客可以填昵称邮箱网址直接评论不强制登录支持评论管理后台支持最新评论和主题的评论弹幕最新评论模块更搭私有部署也可以直接跑起来我这边其实已经把后端跑起来了服务器本地测试也正常返回类似这样云函数运行正常但问题出在域名这一步我的评论子域名打算用因为服务器是国内机器域名没有完成备案接入备案申请证书时会被拦住浏览器里的博客是评论接口也必须是否则会被浏览器拦截于是只能先暂时搁置简单说就是技术上能跑但国内服务器未备案域名会卡在和访问这一层等后面备案搞定只要能正常访问就可以随时切回这个坑先记着后面再填二临时方案先用顶上暂时没法上线那评论总不能继续空着吧所以我先用了的思路很简单把博客评论存到里它的优点是不需要自己维护数据库不需要服务器后端和仓库天然绑定配置好以后加载很稳适合静态博客临时快速上线评论功能缺点也很明显评论者需要账号严格来说不是谁都能评论最新评论弹幕这类功能就先用不了对我来说它现在就是一个很合适的临时方案先让评论区活起来后面备案完成再切回三的准备工作准备一个评论仓库我单独建了一个仓库来放评论这个仓库要注意几点仓库必须是要开启要有一个讨论分类比如要安装这样才能把每篇文章对应到开启进入评论仓库勾选然后去页面确认有分类比如我这里用的就是安装打开页面点击安装然后选择刚才那个评论仓库这里一定要确认授权到了正确仓库如果没装好会报我一开始就卡在这里过后来重新授权仓库以后才正常四在生成配置打开然后按自己的博客情况填写我这里主要是这样仓库页面映射关系分类评论框位置语言配置完成后页面会生成一段脚本里面最关键的是这些值我的最终配置里用到的是这些值别手打猜最好从生成结果里复制稳一点五里怎么配我的博客用的是主题评论配置主要改核心配置类似这样因为不支持的最新评论和弹幕所以这两个我也先关掉不关的话侧边栏可能一直或者去请求空的地址看着就很别扭六生成和验证改完配置以后先本地生成如果生成没报错再检查文章页里有没有这些东西我本地验证以后文章页和留言板页都能正常插入也就是说文章底部会出现评论区文章内容版权信息上一篇下一篇相关内容评论框这样就算临时评论系统上线了七现在的取舍目前我的选择是方案当前状态优点缺点临时启用不用服务器和数据库直接存评论访客必须登录暂时搁置普通访客也能评论功能更完整国内服务器需要备案和所以现阶段就是先用保证评论区可用等备案完成以后再切回这个思路比较稳不至于为了追求一步到位把评论系统一直拖着不上线先跑起来再慢慢优化八备案后怎么切回后面只要备案完成并且这个地址能正常访问就可以把配置切回然后重新生成部署再检查文章页评论区是否正常加载即可也就是说这次不是放弃只是先让顶班等备案和搞定随时可以回来接管评论区小结这次折腾下来我最大的感受是静态博客本身很好部署但评论系统属于动态服务一旦涉及国内服务器就绕不开域名备案这些基础设施问题适合快速上线适合长期体验现在先用后面备案完成再切是我目前最舒服的过渡方案折腾归折腾评论区总算先活了',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-04 15:01:49',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://bu.dusays.com/2026/02/26/699fe30085732.gif"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="安知鱼"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/02/02/69806d59643ca.ico" alt="安知鱼"/><span class="back-menu-item-text">安知鱼</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://docs.anheyu.com/intro.html" title="安知鱼配置"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/02/02/69806ad7429ca.ico" alt="安知鱼配置"/><span class="back-menu-item-text">安知鱼配置</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://7bu.top/" title="去不图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/15/69687a7f1a04e.png" alt="去不图床"/><span class="back-menu-item-text">去不图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aethera.cn/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/10/6961fed146507.jpg" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">ikun</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://bu.dusays.com/2026/01/26/6977304a2155b.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/26/6977304a2155b.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://bu.dusays.com/2026/01/26/6977319d631b7.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/26/6977319d631b7.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.05rem;">AI<sup>6</sup></a><a href="/tags/AI%E5%B7%A5%E5%85%B7/" style="font-size: 1.05rem;">AI工具<sup>2</sup></a><a href="/tags/AI%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">AI模型<sup>1</sup></a><a href="/tags/AI%E7%BC%96%E7%A8%8B/" style="font-size: 1.05rem;">AI编程<sup>3</sup></a><a href="/tags/AI%E8%A7%86%E9%A2%91/" style="font-size: 1.05rem;">AI视频<sup>1</sup></a><a href="/tags/Antigravity/" style="font-size: 1.05rem;">Antigravity<sup>2</sup></a><a href="/tags/ChatGPT/" style="font-size: 1.05rem;">ChatGPT<sup>2</sup></a><a href="/tags/Claude/" style="font-size: 1.05rem;">Claude<sup>1</sup></a><a href="/tags/Codex/" style="font-size: 1.05rem;">Codex<sup>2</sup></a><a href="/tags/DevOps/" style="font-size: 1.05rem;">DevOps<sup>1</sup></a><a href="/tags/Docker/" style="font-size: 1.05rem;">Docker<sup>2</sup></a><a href="/tags/GLM/" style="font-size: 1.05rem;">GLM<sup>1</sup></a><a href="/tags/GPT-5-6/" style="font-size: 1.05rem;">GPT-5.6<sup>1</sup></a><a href="/tags/GSAP/" style="font-size: 1.05rem;">GSAP<sup>1</sup></a><a href="/tags/Gemini/" style="font-size: 1.05rem;">Gemini<sup>1</sup></a><a href="/tags/Gemma/" style="font-size: 1.05rem;">Gemma<sup>1</sup></a><a href="/tags/Git/" style="font-size: 1.05rem;">Git<sup>1</sup></a><a href="/tags/Grok-CLI/" style="font-size: 1.05rem;">Grok CLI<sup>1</sup></a><a href="/tags/HeyGen/" style="font-size: 1.05rem;">HeyGen<sup>1</sup></a><a href="/tags/JavaScript/" style="font-size: 1.05rem;">JavaScript<sup>1</sup></a><a href="/tags/Kimi-Work/" style="font-size: 1.05rem;">Kimi Work<sup>1</sup></a><a href="/tags/Linux/" style="font-size: 1.05rem;">Linux<sup>1</sup></a><a href="/tags/MiniMax-H3/" style="font-size: 1.05rem;">MiniMax H3<sup>1</sup></a><a href="/tags/Ollama/" style="font-size: 1.05rem;">Ollama<sup>1</sup></a><a href="/tags/OpenAI/" style="font-size: 1.05rem;">OpenAI<sup>1</sup></a><a href="/tags/Reasonix/" style="font-size: 1.05rem;">Reasonix<sup>1</sup></a><a href="/tags/Seedance/" style="font-size: 1.05rem;">Seedance<sup>1</sup></a><a href="/tags/llama-cpp/" style="font-size: 1.05rem;">llama.cpp<sup>2</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" style="font-size: 1.05rem;">前端开发<sup>1</sup></a><a href="/tags/%E5%90%90%E6%A7%BD/" style="font-size: 1.05rem;">吐槽<sup>2</sup></a><a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">大模型<sup>2</sup></a><a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 1.05rem;">学习<sup>1</sup></a><a href="/tags/%E5%AE%B9%E5%99%A8%E5%8C%96/" style="font-size: 1.05rem;">容器化<sup>1</sup></a><a href="/tags/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">开源模型<sup>3</sup></a><a href="/tags/%E6%9C%AC%E5%9C%B0AI/" style="font-size: 1.05rem;">本地AI<sup>2</sup></a><a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/" style="font-size: 1.05rem;">本地部署<sup>1</sup></a><a href="/tags/%E6%A1%8C%E9%9D%A2%E7%BE%8E%E5%8C%96/" style="font-size: 1.05rem;">桌面美化<sup>1</sup></a><a href="/tags/%E6%A8%A1%E5%9E%8B%E6%B5%8B%E8%AF%84/" style="font-size: 1.05rem;">模型测评<sup>1</sup></a><a href="/tags/%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B/" style="font-size: 1.05rem;">编程模型<sup>2</sup></a><a href="/tags/%E7%BD%91%E9%A1%B5%E5%8A%A8%E7%94%BB/" style="font-size: 1.05rem;">网页动画<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>Archives</span><a class="card-more-btn" href="/archives/" title="More">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">August 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/07/"><span class="card-archive-list-date">July 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">June 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">10</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/05/"><span class="card-archive-list-date">May 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/04/"><span class="card-archive-list-date">April 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/03/"><span class="card-archive-list-date">March 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">February 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/01/"><span class="card-archive-list-date">January 2026</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url">工具</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Giscus/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Giscus</span></a><a class="article-meta__tags" href="/tags/Twikoo/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Twikoo</span></a><a class="article-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>博客</span></a><a class="article-meta__tags" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>评论系统</span></a></span></div></div><h1 class="post-title" itemprop="name headline">博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2026-06-04T06:30:00.000Z" title="Created 2026-06-04 14:30:00">2026-06-04</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2026-06-04T07:01:49.256Z" title="Updated 2026-06-04 15:01:49">2026-06-04</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">Word count:</span><span class="word-count" title="文章字数">1.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">Reading time:</span><span>5min</span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为cq"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>cq</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/comment-system-giscus-cover.png"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/"><header><a class="post-meta-categories" href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url">工具</a><a href="/tags/Giscus/" tabindex="-1" itemprop="url">Giscus</a><a href="/tags/Twikoo/" tabindex="-1" itemprop="url">Twikoo</a><a href="/tags/%E5%8D%9A%E5%AE%A2/" tabindex="-1" itemprop="url">博客</a><a href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/" tabindex="-1" itemprop="url">评论系统</a><h1 id="CrawlerTitle" itemprop="name headline">博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">阿晖</span><time itemprop="dateCreated datePublished" datetime="2026-06-04T06:30:00.000Z" title="Created 2026-06-04 14:30:00">2026-06-04</time><time itemprop="dateCreated datePublished" datetime="2026-06-04T07:01:49.256Z" title="Updated 2026-06-04 15:01:49">2026-06-04</time></header><h1 id="博客评论系统折腾记录：Twikoo-暂缓，Giscus-先顶上"><a href="#博客评论系统折腾记录：Twikoo-暂缓，Giscus-先顶上" class="headerlink" title="博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上"></a>博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上</h1><p>最近给博客折腾评论系统，原本想一步到位上 <strong>Twikoo</strong>，让访客不用 GitHub 账号也能评论，体验更接近普通留言板。结果真上手才发现：技术链路倒是不难，真正卡我的居然是 <strong>备案和 HTTPS</strong> 😅</p>
+<p>所以这篇就简单记录一下这次折腾过程：前半段快速说说 Twikoo 为什么先搁置，后半段重点写我最后临时启用 <strong>Giscus</strong> 的操作流程。等备案处理好以后，随时可以再切回 Twikoo。🚀</p>
+<hr>
+<h2 id="一、Twikoo-为什么先放一放？🧩"><a href="#一、Twikoo-为什么先放一放？🧩" class="headerlink" title="一、Twikoo 为什么先放一放？🧩"></a>一、Twikoo 为什么先放一放？🧩</h2><p>Twikoo 本身是很适合博客评论的，尤其是国内访客场景：</p>
+<ul>
+<li>访客可以填昵称、邮箱、网址直接评论，不强制 GitHub 登录 👍</li>
+<li>支持评论管理后台</li>
+<li>支持最新评论</li>
+<li>和 Anzhiyu 主题的评论弹幕、最新评论模块更搭</li>
+<li>私有部署也可以直接 Docker 跑起来</li>
+</ul>
+<p>我这边其实已经把 Twikoo 后端跑起来了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name twikoo \</span><br><span class="line">  --restart=always \</span><br><span class="line">  -p 127.0.0.1:18080:8080 \</span><br><span class="line">  -v /opt/twikoo/data:/app/data \</span><br><span class="line">  imaegoo/twikoo</span><br></pre></td></tr></table></figure>
+
+<p>服务器本地测试也正常：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://127.0.0.1:18080</span><br></pre></td></tr></table></figure>
+
+<p>返回类似这样：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">100</span><span class="punctuation">,</span><span class="attr">&quot;message&quot;</span><span class="punctuation">:</span><span class="string">&quot;Twikoo 云函数运行正常...&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="string">&quot;1.7.11&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>但问题出在域名这一步。我的评论子域名打算用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comments.therealman.top</span><br></pre></td></tr></table></figure>
+
+<p>因为服务器是国内机器，域名没有完成备案&#x2F;接入备案，申请 HTTPS 证书时会被拦住。浏览器里的博客是 HTTPS，评论接口也必须是 HTTPS，否则会被浏览器拦截。于是 Twikoo 只能先暂时搁置。🥲</p>
+<p>简单说就是：</p>
+<blockquote>
+<p>Twikoo 技术上能跑，但国内服务器 + 未备案域名，会卡在 HTTPS 和访问这一层。</p>
+</blockquote>
+<p>等后面备案搞定，只要 <code>https://comments.therealman.top</code> 能正常访问，就可以随时切回 Twikoo。这个坑先记着，后面再填。🛠️</p>
+<hr>
+<h2 id="二、临时方案：先用-Giscus-顶上-💬"><a href="#二、临时方案：先用-Giscus-顶上-💬" class="headerlink" title="二、临时方案：先用 Giscus 顶上 💬"></a>二、临时方案：先用 Giscus 顶上 💬</h2><p>Twikoo 暂时没法上线，那评论总不能继续空着吧？所以我先用了 <strong>Giscus</strong>。</p>
+<p>Giscus 的思路很简单：</p>
+<blockquote>
+<p>把博客评论存到 GitHub Discussions 里。</p>
+</blockquote>
+<p>它的优点是：</p>
+<ul>
+<li>不需要自己维护数据库</li>
+<li>不需要服务器后端</li>
+<li>和 GitHub 仓库天然绑定</li>
+<li>配置好以后加载很稳</li>
+<li>适合静态博客临时快速上线评论功能 ✨</li>
+</ul>
+<p>缺点也很明显：</p>
+<ul>
+<li>评论者需要 GitHub 账号</li>
+<li>严格来说不是“谁都能评论”</li>
+<li>最新评论、弹幕这类 Twikoo 功能就先用不了</li>
+</ul>
+<p>对我来说，它现在就是一个很合适的临时方案：先让评论区活起来，后面备案完成再切回 Twikoo。😎</p>
+<hr>
+<h2 id="三、Giscus-的准备工作-🧱"><a href="#三、Giscus-的准备工作-🧱" class="headerlink" title="三、Giscus 的准备工作 🧱"></a>三、Giscus 的准备工作 🧱</h2><h3 id="1-准备一个评论仓库"><a href="#1-准备一个评论仓库" class="headerlink" title="1. 准备一个评论仓库"></a>1. 准备一个评论仓库</h3><p>我单独建了一个 GitHub 仓库来放评论：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ikunkunkunkunkunkun/ssman-comments</span><br></pre></td></tr></table></figure>
+
+<p>这个仓库要注意几点：</p>
+<ul>
+<li>仓库必须是 Public</li>
+<li>要开启 Discussions</li>
+<li>要有一个讨论分类，比如 <code>General</code></li>
+<li>要安装 Giscus App</li>
+</ul>
+<p>这样 Giscus 才能把每篇文章对应到 GitHub Discussion。</p>
+<hr>
+<h3 id="2-开启-GitHub-Discussions"><a href="#2-开启-GitHub-Discussions" class="headerlink" title="2. 开启 GitHub Discussions"></a>2. 开启 GitHub Discussions</h3><p>进入评论仓库：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings -&gt; Features -&gt; Discussions</span><br></pre></td></tr></table></figure>
+
+<p>勾选 Discussions。</p>
+<p>然后去 Discussions 页面确认有分类，比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">General</span><br></pre></td></tr></table></figure>
+
+<p>我这里用的就是 <code>General</code>。📌</p>
+<hr>
+<h3 id="3-安装-Giscus-App"><a href="#3-安装-Giscus-App" class="headerlink" title="3. 安装 Giscus App"></a>3. 安装 Giscus App</h3><p>打开 Giscus App 页面：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/apps/giscus</span><br></pre></td></tr></table></figure>
+
+<p>点击安装，然后选择刚才那个评论仓库。</p>
+<p>这里一定要确认授权到了正确仓库。如果没装好，Giscus 会报：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">giscus is not installed on this repository</span><br></pre></td></tr></table></figure>
+
+<p>我一开始就卡在这里过，后来重新授权仓库以后才正常。😂</p>
+<hr>
+<h2 id="四、在-giscus-app-生成配置-⚙️"><a href="#四、在-giscus-app-生成配置-⚙️" class="headerlink" title="四、在 giscus.app 生成配置 ⚙️"></a>四、在 giscus.app 生成配置 ⚙️</h2><p>打开：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://giscus.app/zh-CN</span><br></pre></td></tr></table></figure>
+
+<p>然后按自己的博客情况填写。</p>
+<p>我这里主要是这样：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">仓库：ikunkunkunkunkunkun/ssman-comments</span><br><span class="line">页面 ↔ Discussions 映射关系：pathname</span><br><span class="line">分类：General</span><br><span class="line">评论框位置：bottom</span><br><span class="line">语言：zh-CN</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，页面会生成一段脚本，里面最关键的是这些值：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data-repo</span><br><span class="line">data-repo-id</span><br><span class="line">data-category</span><br><span class="line">data-category-id</span><br><span class="line">data-mapping</span><br></pre></td></tr></table></figure>
+
+<p>我的最终配置里用到的是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repo: ikunkunkunkunkunkun/ssman-comments</span><br><span class="line">repo_id: 。。。</span><br><span class="line">category_id: 。。。</span><br><span class="line">mapping: pathname</span><br><span class="line">category: General</span><br></pre></td></tr></table></figure>
+
+<p>这些值别手打猜，最好从 giscus.app 生成结果里复制。稳一点。👌</p>
+<hr>
+<h2 id="五、Hexo-Anzhiyu-里怎么配-🐟"><a href="#五、Hexo-Anzhiyu-里怎么配-🐟" class="headerlink" title="五、Hexo + Anzhiyu 里怎么配 🐟"></a>五、Hexo + Anzhiyu 里怎么配 🐟</h2><p>我的博客用的是 Hexo + Anzhiyu 主题，评论配置主要改 <code>_config.anzhiyu.yml</code>。</p>
+<p>核心配置类似这样：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">Giscus</span></span><br><span class="line">  <span class="attr">text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">count:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">card_post_count:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">giscus:</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">ikunkunkunkunkunkun/ssman-comments</span></span><br><span class="line">  <span class="attr">repo_id:</span> <span class="string">。。。</span></span><br><span class="line">  <span class="attr">category_id:</span> <span class="string">。。。</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">light</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">dark</span></span><br><span class="line">  <span class="attr">option:</span></span><br><span class="line">    <span class="attr">data-lang:</span> <span class="string">zh-CN</span></span><br><span class="line">    <span class="attr">data-mapping:</span> <span class="string">pathname</span></span><br><span class="line">    <span class="attr">data-category:</span> <span class="string">General</span></span><br><span class="line">    <span class="attr">data-input-position:</span> <span class="string">bottom</span></span><br></pre></td></tr></table></figure>
+
+<p>因为 Giscus 不支持 Anzhiyu 的 Twikoo 最新评论和弹幕，所以这两个我也先关掉：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">newest_comments:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">comment_barrage_config:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>不关的话，侧边栏可能一直 loading，或者去请求空的 Twikoo 地址，看着就很别扭。😵</p>
+<hr>
+<h2 id="六、生成和验证-🧪"><a href="#六、生成和验证-🧪" class="headerlink" title="六、生成和验证 🧪"></a>六、生成和验证 🧪</h2><p>改完配置以后，先本地生成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>如果生成没报错，再检查文章页里有没有这些东西：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#post-comment</span><br><span class="line">#giscus-wrap</span><br><span class="line">https://giscus.app/client.js</span><br></pre></td></tr></table></figure>
+
+<p>我本地验证以后，文章页和留言板页都能正常插入 Giscus iframe。</p>
+<p>也就是说，文章底部会出现评论区：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">文章内容</span><br><span class="line">版权信息</span><br><span class="line">上一篇/下一篇</span><br><span class="line">相关内容</span><br><span class="line">Comment</span><br><span class="line">Giscus 评论框</span><br></pre></td></tr></table></figure>
+
+<p>这样就算临时评论系统上线了。🎉</p>
+<hr>
+<h2 id="七、现在的取舍-🤔"><a href="#七、现在的取舍-🤔" class="headerlink" title="七、现在的取舍 🤔"></a>七、现在的取舍 🤔</h2><p>目前我的选择是：</p>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>当前状态</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Giscus</td>
+<td>临时启用</td>
+<td>不用服务器和数据库，GitHub 直接存评论</td>
+<td>访客必须登录 GitHub</td>
+</tr>
+<tr>
+<td>Twikoo</td>
+<td>暂时搁置</td>
+<td>普通访客也能评论，功能更完整</td>
+<td>国内服务器需要备案和 HTTPS</td>
+</tr>
+</tbody></table>
+<p>所以现阶段就是：</p>
+<blockquote>
+<p>先用 Giscus 保证评论区可用，等备案完成以后再切回 Twikoo。</p>
+</blockquote>
+<p>这个思路比较稳，不至于为了追求一步到位，把评论系统一直拖着不上线。先跑起来，再慢慢优化。🚴</p>
+<hr>
+<h2 id="八、备案后怎么切回-Twikoo？🔁"><a href="#八、备案后怎么切回-Twikoo？🔁" class="headerlink" title="八、备案后怎么切回 Twikoo？🔁"></a>八、备案后怎么切回 Twikoo？🔁</h2><p>后面只要备案完成，并且这个地址能正常 HTTPS 访问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://comments.therealman.top</span><br></pre></td></tr></table></figure>
+
+<p>就可以把配置切回 Twikoo：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="attr">use:</span> <span class="string">Twikoo</span></span><br><span class="line"></span><br><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">envId:</span> <span class="string">https://comments.therealman.top</span></span><br><span class="line"></span><br><span class="line"><span class="attr">newest_comments:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">comment_barrage_config:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>然后重新生成、部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>再检查文章页评论区是否正常加载即可。</p>
+<p>也就是说，这次不是放弃 Twikoo，只是先让 Giscus 顶班。等备案和 HTTPS 搞定，Twikoo 随时可以回来接管评论区。😄</p>
+<hr>
+<h2 id="小结-📝"><a href="#小结-📝" class="headerlink" title="小结 📝"></a>小结 📝</h2><p>这次折腾下来，我最大的感受是：</p>
+<blockquote>
+<p>静态博客本身很好部署，但评论系统属于动态服务，一旦涉及国内服务器，就绕不开域名、备案、HTTPS 这些基础设施问题。</p>
+</blockquote>
+<p>Giscus 适合快速上线，Twikoo 适合长期体验。<br>现在先用 Giscus，后面备案完成再切 Twikoo，是我目前最舒服的过渡方案。✅</p>
+<p>折腾归折腾，评论区总算先活了。🥳</p>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/10/6961fed261c04.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/10/6961fed261c04.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">阿晖</div><div class="post-copyright__author_desc">这对吗孩子们</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/')">博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://bu.dusays.com/2026/01/26/6977304a2155b.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/26/6977304a2155b.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://bu.dusays.com/2026/01/26/6977319d631b7.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/26/6977319d631b7.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上&amp;url=https://www.12700188.xyz/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/&amp;pic=/img/comment-system-giscus-cover.png" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Giscus/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Giscus<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/Twikoo/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Twikoo<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E5%8D%9A%E5%AE%A2/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>博客<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>评论系统<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="/img/chatgpt-quota-alternatives-cover.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/05/18/%E5%BE%A1%E4%B8%89%E5%AE%B6%E5%92%8Cdeepseek/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/05/18/6a0ae399ce8c3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">御三家和deepseek</div></div></a></div><div class="next-post pull-right"><a href="/2026/06/06/Gemma-4-12B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%93%E9%AA%8C/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/05/25/6a13a3144d5c7.png?_r_=e5f55610-ec9d-5264-3d24-3534a59f5681" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Gemma 4 12B 本地部署与体验：一台消费级电脑也能跑的多模态开源模型</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> Comment</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/10/6961fed261c04.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">风会记得每一次启程，而我想把关于技术与创造的热爱，留在这里。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/about"><h1 class="author-info__name">阿晖</h1><div class="author-info__desc">这对吗孩子们</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/ikunkunkunkunkunkun" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/341148845" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>Announcement</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="card-widget card-weather"><div class="weather-card-body" data-weather-card="data-weather-card"><div class="weather-card-hero"><div class="weather-card-glow"></div><canvas class="weather-card-rain3d" data-weather-rain3d="data-weather-rain3d" aria-hidden="true"></canvas><div class="weather-card-rain" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="weather-card-head"><div class="weather-card-title"><i class="anzhiyufont anzhiyu-icon-cloud"></i><span>重庆天气</span></div><div class="weather-card-city" data-weather-city="data-weather-city">重庆</div></div><div class="weather-card-main"><div class="weather-card-temp"><span data-weather-temp="data-weather-temp">--</span><span class="weather-card-unit">°C</span></div><div class="weather-card-status"><span data-weather-desc="data-weather-desc">天气加载中</span><small>实时天气</small></div></div></div><div class="weather-card-meta"><div class="weather-card-item"><span class="weather-card-label">体感</span><span data-weather-apparent="data-weather-apparent">--</span></div><div class="weather-card-item"><span class="weather-card-label">湿度</span><span data-weather-humidity="data-weather-humidity">--</span></div><div class="weather-card-item"><span class="weather-card-label">风速</span><span data-weather-wind="data-weather-wind">--</span></div></div></div></div><div class="card-widget card-daily-fortune" id="card-daily-fortune"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div class="sidebar-widget-head">
+  <span class="sidebar-widget-symbol" aria-hidden="true">🎴</span>
+  <div class="sidebar-widget-title">
+    <strong>今日抽签</strong>
+    <span id="fortuneDate">每天一次，手气留到明天</span>
+  </div>
+  <span class="sidebar-widget-chip">DAILY</span>
+</div>
+<div class="fortune-stage" id="fortuneStage" aria-live="polite">
+  <span class="fortune-idle-mark" aria-hidden="true">✦</span>
+  <p>今天会抽到什么？</p>
+  <small>签语仅供开心，决定还得自己做</small>
+</div>
+<button class="fortune-draw-button" id="fortuneDrawButton" type="button">
+  <span aria-hidden="true">✦</span>
+  <span>抽一签</span>
+</button>
+</div></div><div class="card-widget card-visitor-origin" id="card-visitor-origin"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div class="sidebar-widget-head">
+  <span class="sidebar-widget-symbol sidebar-widget-symbol--location" aria-hidden="true">📍</span>
+  <div class="sidebar-widget-title">
+    <strong>你来自哪里</strong>
+    <span>根据 IP 粗略定位</span>
+  </div>
+  <button class="visitor-refresh-button" id="visitorRefreshButton" type="button" title="重新定位" aria-label="重新定位">↻</button>
+</div>
+<div class="visitor-origin-main" aria-live="polite">
+  <span class="visitor-origin-flag" id="visitorOriginFlag" aria-hidden="true">🛰️</span>
+  <div>
+    <span class="visitor-origin-label">正在寻找你的坐标</span>
+    <strong id="visitorOriginPlace">定位中...</strong>
+    <small id="visitorOriginDetail">不会保存你的 IP 地址</small>
+  </div>
+</div>
+<div class="visitor-distance-line">
+  <span>📐 距博主 · 重庆</span>
+  <strong id="visitorDistanceValue">计算中</strong>
+</div>
+</div></div><div class="card-widget card-countdown"><div class="item-headline"><i></i><span></span></div><div class="item-content"><div class="cd-count-left">
+  <span class="cd-text">距离</span>
+  <span class="cd-name" id="eventName"></span>
+  <span class="cd-time" id="daysUntil"></span>
+  <span class="cd-date" id="eventDate"></span>
+</div>
+<div id="countRight" class="cd-count-right"></div>
+</div></div><div class="card-widget card-working"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-lightbulb"></i><span>正在折腾</span></div><div class="item-content"><div class="working-list">
+  <a class="working-item" href="/2025/01/27/hello-world/">
+    <span class="working-dot"></span>
+    <span class="working-text"><b>文章头图组件</b><em>clean hero 试用中</em></span>
+  </a>
+  <a class="working-item" href="javascript:void(0);">
+    <span class="working-dot"></span>
+    <span class="working-text"><b>腾讯云 EdgeOne</b><em>准备接入国内加速</em></span>
+  </a>
+  <a class="working-item" href="/2026/06/04/%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo%E6%9A%82%E7%BC%93%EF%BC%8CGiscus%E5%85%88%E9%A1%B6%E4%B8%8A/">
+    <span class="working-dot"></span>
+    <span class="working-text"><b>Giscus 评论系统</b><em>继续优化体验</em></span>
+  </a>
+  <a class="working-item" href="/2026/06/06/Gemma-4-12B-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%93%E9%AA%8C/">
+    <span class="working-dot"></span>
+    <span class="working-text"><b>本地 AI 模型</b><em>记录部署和体验</em></span>
+  </a>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95%EF%BC%9ATwikoo-%E6%9A%82%E7%BC%93%EF%BC%8CGiscus-%E5%85%88%E9%A1%B6%E4%B8%8A"><span class="toc-number">1.</span> <span class="toc-text">博客评论系统折腾记录：Twikoo 暂缓，Giscus 先顶上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Twikoo-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%88%E6%94%BE%E4%B8%80%E6%94%BE%EF%BC%9F%F0%9F%A7%A9"><span class="toc-number">1.1.</span> <span class="toc-text">一、Twikoo 为什么先放一放？🧩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%B4%E6%97%B6%E6%96%B9%E6%A1%88%EF%BC%9A%E5%85%88%E7%94%A8-Giscus-%E9%A1%B6%E4%B8%8A-%F0%9F%92%AC"><span class="toc-number">1.2.</span> <span class="toc-text">二、临时方案：先用 Giscus 顶上 💬</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Giscus-%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C-%F0%9F%A7%B1"><span class="toc-number">1.3.</span> <span class="toc-text">三、Giscus 的准备工作 🧱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA%E8%AF%84%E8%AE%BA%E4%BB%93%E5%BA%93"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 准备一个评论仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BC%80%E5%90%AF-GitHub-Discussions"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 开启 GitHub Discussions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85-Giscus-App"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 安装 Giscus App</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9C%A8-giscus-app-%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE-%E2%9A%99%EF%B8%8F"><span class="toc-number">1.4.</span> <span class="toc-text">四、在 giscus.app 生成配置 ⚙️</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Hexo-Anzhiyu-%E9%87%8C%E6%80%8E%E4%B9%88%E9%85%8D-%F0%9F%90%9F"><span class="toc-number">1.5.</span> <span class="toc-text">五、Hexo + Anzhiyu 里怎么配 🐟</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%94%9F%E6%88%90%E5%92%8C%E9%AA%8C%E8%AF%81-%F0%9F%A7%AA"><span class="toc-number">1.6.</span> <span class="toc-text">六、生成和验证 🧪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%8E%B0%E5%9C%A8%E7%9A%84%E5%8F%96%E8%88%8D-%F0%9F%A4%94"><span class="toc-number">1.7.</span> <span class="toc-text">七、现在的取舍 🤔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%A4%87%E6%A1%88%E5%90%8E%E6%80%8E%E4%B9%88%E5%88%87%E5%9B%9E-Twikoo%EF%BC%9F%F0%9F%94%81"><span class="toc-number">1.8.</span> <span class="toc-text">八、备案后怎么切回 Twikoo？🔁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-%F0%9F%93%9D"><span class="toc-number">1.9.</span> <span class="toc-text">小结 📝</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/08/09/ChatGPT-%E9%A2%9D%E5%BA%A6%E7%94%A8%E5%AE%8C%E5%90%8E%E6%88%91%E7%9A%84AI%E5%B9%B3%E6%9B%BF%E6%8E%A5%E5%8A%9B%E8%B5%9B/" title="🪫 ChatGPT 额度用完后：我的 AI 平替接力赛"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/chatgpt-quota-alternatives-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🪫 ChatGPT 额度用完后：我的 AI 平替接力赛"/></a><div class="content"><a class="title" href="/2026/08/09/ChatGPT-%E9%A2%9D%E5%BA%A6%E7%94%A8%E5%AE%8C%E5%90%8E%E6%88%91%E7%9A%84AI%E5%B9%B3%E6%9B%BF%E6%8E%A5%E5%8A%9B%E8%B5%9B/" title="🪫 ChatGPT 额度用完后：我的 AI 平替接力赛">🪫 ChatGPT 额度用完后：我的 AI 平替接力赛</a><time datetime="2026-08-09T14:20:00.000Z" title="Created 2026-08-09 22:20:00">2026-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/08/01/HeyGen-Seedance-Gemini-Omni-Runway-%E6%80%8E%E4%B9%88%E9%80%89/" title="🎬 AI 视频四强怎么选：HeyGen、Seedance、Gemini Omni、Runway 对比"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ikun-1329553785.cos.ap-beijing.myqcloud.com/ai%E8%A7%86%E9%A2%91%E5%8A%A8%E6%BC%AB" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🎬 AI 视频四强怎么选：HeyGen、Seedance、Gemini Omni、Runway 对比"/></a><div class="content"><a class="title" href="/2026/08/01/HeyGen-Seedance-Gemini-Omni-Runway-%E6%80%8E%E4%B9%88%E9%80%89/" title="🎬 AI 视频四强怎么选：HeyGen、Seedance、Gemini Omni、Runway 对比">🎬 AI 视频四强怎么选：HeyGen、Seedance、Gemini Omni、Runway 对比</a><time datetime="2026-08-01T08:30:00.000Z" title="Created 2026-08-01 16:30:00">2026-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/27/Kimi-K3-%E8%A6%81%E5%BC%80%E6%BA%90%E4%BA%86/" title="🌙🚀 Kimi K3 要开源了：2.8T 参数、1M 上下文，以及 Arena 榜首的一次冲击"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ikun-1329553785.cos.ap-beijing.myqcloud.com/kimik3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🌙🚀 Kimi K3 要开源了：2.8T 参数、1M 上下文，以及 Arena 榜首的一次冲击"/></a><div class="content"><a class="title" href="/2026/07/27/Kimi-K3-%E8%A6%81%E5%BC%80%E6%BA%90%E4%BA%86/" title="🌙🚀 Kimi K3 要开源了：2.8T 参数、1M 上下文，以及 Arena 榜首的一次冲击">🌙🚀 Kimi K3 要开源了：2.8T 参数、1M 上下文，以及 Arena 榜首的一次冲击</a><time datetime="2026-07-27T13:20:00.000Z" title="Created 2026-07-27 21:20:00">2026-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/27/%E5%9C%A8%E9%82%A3%E4%BA%9B%E8%A2%AB%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E7%85%A7%E4%BA%AE%E8%BF%87%E7%9A%84%E5%A4%9C%E6%99%9A/" title="东野圭吾，晚安"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ikun-1329553785.cos.ap-beijing.myqcloud.com/higashino-memorial-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="东野圭吾，晚安"/></a><div class="content"><a class="title" href="/2026/07/27/%E5%9C%A8%E9%82%A3%E4%BA%9B%E8%A2%AB%E4%B8%9C%E9%87%8E%E5%9C%AD%E5%90%BE%E7%85%A7%E4%BA%AE%E8%BF%87%E7%9A%84%E5%A4%9C%E6%99%9A/" title="东野圭吾，晚安">东野圭吾，晚安</a><time datetime="2026-07-27T12:30:00.000Z" title="Created 2026-07-27 20:30:00">2026-07-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/07/27/%E5%AE%8C%E5%85%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E7%9A%84%E8%B5%9B%E5%8D%9AAI%E4%BC%B4%E4%BE%A3%E9%83%A8%E7%BD%B2%E6%80%9D%E8%B7%AF/" title="🤖💗 完全本地运行的赛博 AI 伴侣：不用联网、不用 API Key 的部署思路"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://ikun-1329553785.cos.ap-beijing.myqcloud.com/ai-companion-cover-hd.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="🤖💗 完全本地运行的赛博 AI 伴侣：不用联网、不用 API Key 的部署思路"/></a><div class="content"><a class="title" href="/2026/07/27/%E5%AE%8C%E5%85%A8%E6%9C%AC%E5%9C%B0%E8%BF%90%E8%A1%8C%E7%9A%84%E8%B5%9B%E5%8D%9AAI%E4%BC%B4%E4%BE%A3%E9%83%A8%E7%BD%B2%E6%80%9D%E8%B7%AF/" title="🤖💗 完全本地运行的赛博 AI 伴侣：不用联网、不用 API Key 的部署思路">🤖💗 完全本地运行的赛博 AI 伴侣：不用联网、不用 API Key 的部署思路</a><time datetime="2026-07-27T12:30:00.000Z" title="Created 2026-07-27 20:30:00">2026-07-27</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/footer-work-badge.svg" alt="在线中" title="在线中"/><div id="runtimeTextTip"></div></div></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2025 - 2026 By <a class="footer-bar-link" href="/" title="阿晖" target="_blank">阿晖</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  getScript('https://yijuzhan.com/api/word.php?m=js').then(() => {
+    const con = str[0]
+    if (true) {
+      const from = '出自 ' + str[1]
+      const sub = []
+      sub.unshift(con, from)
+      window.typed = new Typed('#footer-type-tips', {
+        strings: sub,
+        startDelay: 300,
+        typeSpeed: 60,
+        loop: true,
+        backSpeed: 30,
+      })
+    } else {
+      document.getElementById('footer-type-tips').innerHTML = con
+    }
+  })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.1.0/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a><a class="footer-bar-link cc" href="/copyright" title="cc协议"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-by-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nc-line"></i><i class="anzhiyufont anzhiyu-icon-creative-commons-nd-line"></i></a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">74</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">6</div></a></div><span class="sidebar-menu-item-title">Function</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="Display Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>Display Mode</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.anheyu.com/" title="安知鱼"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/02/02/69806d59643ca.ico" alt="安知鱼"/><span class="back-menu-item-text">安知鱼</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://docs.anheyu.com/intro.html" title="安知鱼配置"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/02/02/69806ad7429ca.ico" alt="安知鱼配置"/><span class="back-menu-item-text">安知鱼配置</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://7bu.top/" title="去不图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/15/69687a7f1a04e.png" alt="去不图床"/><span class="back-menu-item-text">去不图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://aethera.cn/" title="个人博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2026/01/10/6961fed146507.jpg" alt="个人博客"/><span class="back-menu-item-text">个人博客</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><button id="chat-btn" type="button" title="Chat"><i class="anzhiyufont anzhiyu-icon-comment-sms"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="9250969437" server="tencent" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/9250969437&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.cbd.int/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("01/20/2025 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2025 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 阿晖 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("01/20/2025 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "/img/footer-offduty-badge.svg";
+        img.title = "休息中";
+        img.alt = "休息中";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.12700188.xyz',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.12700188.xyz',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "therealikun@outlook.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><script src="/js/countdown.js"></script><script src="/js/sidebar-widgets.js"></script><script src="/js/friend-apply.js"></script><script src="/js/friend-admin.js"></script><script id="click-show-text" src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="不是,哥们" data-fontsize="15px" data-random="false" async="async"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = true
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'biBDjdAAMksEkYQZy'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script>window.siteStats51laConfig = {
+  id: '3QkEv4oxFUYgaPcW',
+  widgetUrl: 'https://v6-widget.51.la/v6',
+  collectUrl: 'https://sdk.51.la/js-sdk-pro.min.js'
+};</script><script defer data-pjax src="/js/51la-stats.js"></script><script>window.weatherConfig = {
+  enable: true,
+  provider: 'open_meteo',
+  city: '重庆',
+  adcode: '',
+  latitude: '29.563',
+  longitude: '106.5516',
+  apiUrl: 'https://api.open-meteo.com/v1/forecast',
+  apiKey: '',
+  timeout: 8000,
+  cacheMinutes: 20
+};</script><script defer data-pjax src="/js/three.min.js"></script><script defer data-pjax src="/js/weather.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

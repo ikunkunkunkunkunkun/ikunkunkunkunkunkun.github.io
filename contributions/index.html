@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1117">
+  <title>ikun 的 GitHub 贡献贪吃蛇</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" type="module"></script>
+</head>
+<body>
+  <main class="page">
+    <div class="topline"><a href="https://github.com/ikunkunkunkunkunkun">← 返回 GitHub 主页</a><span>ikun · 贡献贪吃蛇</span></div>
+    <section aria-labelledby="heading">
+      <div class="heading-row">
+        <h1 id="heading">正在加载贡献记录…</h1>
+        <div class="controls"><button id="toggle" type="button" disabled>暂停</button><button id="replay" type="button" disabled>重播</button></div>
+      </div>
+      <div class="layout">
+        <div class="calendar-panel">
+          <div class="scroll-area">
+            <div class="calendar-wrap">
+              <div class="month-labels" id="months"></div>
+              <div class="weekday-labels"><span>周一</span><span>周三</span><span>周五</span></div>
+              <svg id="calendar" role="img" aria-label="GitHub 每日贡献日历，粉紫色贪吃蛇覆盖在格子上" xmlns="http://www.w3.org/2000/svg"></svg>
+            </div>
+          </div>
+          <div class="bottom-row"><span>贡献数据来自 GitHub，每日更新</span><div class="legend"><span>更少</span><i class="level-0"></i><i class="level-1"></i><i class="level-2"></i><i class="level-3"></i><i class="level-4"></i><span>更多</span></div></div>
+        </div>
+        <nav class="years" id="years" aria-label="选择贡献年份"></nav>
+      </div>
+      <p class="note" id="status" aria-live="polite"></p>
+    </section>
+  </main>
+</body>
+</html>

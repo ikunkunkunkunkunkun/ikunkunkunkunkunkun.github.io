@@ -1,0 +1,28 @@
+name: Refresh contribution calendar
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 1 * * *'
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch real GitHub contributions
+        env:
+          CONTRIBUTIONS_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN }}
+        run: node contributions/scripts/update-data.mjs
+      - name: Commit changed data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add contributions/data/
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update contribution calendar data'
+            git push
+          fi
